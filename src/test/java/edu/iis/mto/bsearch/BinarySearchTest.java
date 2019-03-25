@@ -74,10 +74,9 @@ public class BinarySearchTest {
     }
 
     @Test
-    public void searchElementInSequenceContainsSameElementsTest() {
+    public void searchElementInSeqContainsSameElement() {
         int[] sequence = {ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT};
 
         Assert.assertThat((sequence.length - 1) / 2, is(equalTo(BinarySearch.search(ELEMENT, sequence).getPosition())));
     }
-
 }
