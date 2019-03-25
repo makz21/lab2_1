@@ -65,10 +65,19 @@ public class BinarySearchTest {
         BinarySearch.search(ELEMENT,sequence);
     }
 
-    @Test public void searchNegativeElementInSeq() {
+    @Test
+    public void searchNegativeElementInSeq() {
         int[] sequence = {ELEMENT - 4, ELEMENT - 3, ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
         int key = ELEMENT - 4;
 
         Assert.assertThat(key, is(equalTo(sequence[BinarySearch.search(key, sequence).getPosition()])));
     }
+
+    @Test
+    public void searchElementInSequenceContainsSameElementsTest() {
+        int[] sequence = {ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT, ELEMENT};
+
+        Assert.assertThat((sequence.length - 1) / 2, is(equalTo(BinarySearch.search(ELEMENT, sequence).getPosition())));
+    }
+
 }
