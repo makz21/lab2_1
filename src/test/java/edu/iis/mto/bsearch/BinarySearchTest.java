@@ -47,5 +47,14 @@ public class BinarySearchTest {
         int[] sequence = {ELEMENT + 1, ELEMENT + 2, ELEMENT + 3};
 
         Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
+        Assert.assertEquals(-1, BinarySearch.search(ELEMENT, sequence).getPosition());
+    }
+
+    @Test
+    public void searchElementInEmptySeq(){
+        int[] sequence = {};
+
+        Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
+        Assert.assertEquals(-1, BinarySearch.search(ELEMENT,sequence).getPosition());
     }
 }
