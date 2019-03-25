@@ -38,4 +38,17 @@ public class BinarySearchTest {
 
         Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
     }
+
+    @Test public void elementMidInSeq() {
+        int[] sequence = {ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
+
+        Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
+    }
+
+    @Test
+    public void elementIsNotInMultiSeq() {
+        int[] sequence = {ELEMENT + 1, ELEMENT + 2, ELEMENT + 3};
+
+        Assert.assertThat(-1, is(equalTo(BinarySearch.search(ELEMENT, sequence).getPosition())));
+    }
 }
