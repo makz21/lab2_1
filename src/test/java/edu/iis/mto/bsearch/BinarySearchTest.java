@@ -2,61 +2,73 @@ package edu.iis.mto.bsearch;
 
 import org.junit.Assert;
 import org.junit.Test;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
 
-import static org.junit.Assert.*;
 
 public class BinarySearchTest {
 
     public static final int ELEMENT = 2;
 
-    @Test public void search() {
+    @Test
+    public void search() {
     }
 
-    @Test public void elementIsInSeq() {
+    @Test
+    public void elementIsInSeq() {
         int[] sequence = {ELEMENT};
-        Assert.assertTrue(BinarySearch.search(ELEMENT, sequence).isFound());
+
+        Assert.assertThat(true, is(equalTo(BinarySearch.search(ELEMENT, sequence).isFound())));
+        Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
     }
 
-    @Test public void elementNotInSingleSeq() {
+    @Test
+    public void elementNotInSingleSeq() {
         int[] sequence = {ELEMENT + 1};
 
-        Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
+        Assert.assertThat(false,is(equalTo((BinarySearch.search(ELEMENT, sequence).isFound()))));
+        Assert.assertThat(-1, is(equalTo(BinarySearch.search(ELEMENT, sequence).getPosition())));
     }
 
-    @Test public void elementFirstInSeq() {
+    @Test
+    public void elementFirstInSeq() {
         int[] sequence = {ELEMENT, ELEMENT + 1, ELEMENT + 2, ELEMENT + 3};
 
-        Assert.assertEquals(0, BinarySearch.search(ELEMENT, sequence).getPosition());
+        Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
     }
 
-    @Test public void elementLastInSeq() {
+    @Test
+    public void elementLastInSeq() {
         int[] sequence = {ELEMENT - 3, ELEMENT - 2, ELEMENT - 1, ELEMENT};
 
-        Assert.assertEquals(sequence.length, BinarySearch.search(ELEMENT, sequence).getPosition());
+        Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
     }
 
-    @Test public void elementMiddleInSeq() {
+    @Test
+    public void elementMiddleInSeq() {
         int[] sequence = {ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
 
-        Assert.assertEquals((sequence.length / 2) + 1, BinarySearch.search(ELEMENT, sequence).getPosition());
+        Assert.assertThat(ELEMENT, is(equalTo(sequence[BinarySearch.search(ELEMENT, sequence).getPosition()])));
     }
 
-    @Test public void elementNotInMultiSeq() {
+    @Test
+    public void elementNotInMultiSeq() {
         int[] sequence = {ELEMENT + 1, ELEMENT + 2, ELEMENT + 3};
 
-        Assert.assertEquals(-1, BinarySearch.search(ELEMENT, sequence).getPosition());
+        Assert.assertThat(-1, is(equalTo(BinarySearch.search(ELEMENT, sequence).getPosition())));
     }
 
-    @Test public void searchElementInEmptySeq() {
+    @Test(expected = IllegalArgumentException.class)
+    public void searchElementInEmptySeq() {
         int[] sequence = {};
 
-        Assert.assertEquals(-1, BinarySearch.search(ELEMENT, sequence).getPosition());
+        BinarySearch.search(ELEMENT,sequence);
     }
 
     @Test public void searchNegativeElementInSeq() {
         int[] sequence = {ELEMENT - 4, ELEMENT - 3, ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
         int key = ELEMENT - 4;
 
-        Assert.assertEquals(key, sequence[BinarySearch.search(key, sequence).getPosition()]);
+        Assert.assertThat(key, is(equalTo(sequence[BinarySearch.search(key, sequence).getPosition()])));
     }
 }
