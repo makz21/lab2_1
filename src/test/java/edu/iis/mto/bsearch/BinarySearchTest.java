@@ -35,26 +35,28 @@ public class BinarySearchTest {
         Assert.assertEquals(sequence.length, BinarySearch.search(ELEMENT, sequence).getPosition());
     }
 
-    @Test
-    public void elementMiddleInSeq() {
+    @Test public void elementMiddleInSeq() {
         int[] sequence = {ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
 
-        Assert.assertEquals((sequence.length/2) +1, BinarySearch.search(ELEMENT, sequence).getPosition());
+        Assert.assertEquals((sequence.length / 2) + 1, BinarySearch.search(ELEMENT, sequence).getPosition());
     }
 
-    @Test
-    public void elementNotInMultiSeq() {
+    @Test public void elementNotInMultiSeq() {
         int[] sequence = {ELEMENT + 1, ELEMENT + 2, ELEMENT + 3};
 
-        Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
         Assert.assertEquals(-1, BinarySearch.search(ELEMENT, sequence).getPosition());
     }
 
-    @Test
-    public void searchElementInEmptySeq(){
+    @Test public void searchElementInEmptySeq() {
         int[] sequence = {};
 
-        Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
-        Assert.assertEquals(-1, BinarySearch.search(ELEMENT,sequence).getPosition());
+        Assert.assertEquals(-1, BinarySearch.search(ELEMENT, sequence).getPosition());
+    }
+
+    @Test public void searchNegativeElementInSeq() {
+        int[] sequence = {ELEMENT - 4, ELEMENT - 3, ELEMENT - 2, ELEMENT - 1, ELEMENT, ELEMENT + 1, ELEMENT + 2};
+        int key = ELEMENT - 4;
+
+        Assert.assertEquals(key, sequence[BinarySearch.search(key, sequence).getPosition()]);
     }
 }
