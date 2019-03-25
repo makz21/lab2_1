@@ -7,8 +7,7 @@ import static org.junit.Assert.*;
 
 public class BinarySearchTest {
 
-//    int [] tab = {1,2,3,4,5,6};
-//    int key = 1;
+
     public static final int ELEMENT = 2;
 
     @Test
@@ -19,5 +18,12 @@ public class BinarySearchTest {
     public void elementIsInSeq(){
         int [] sequence = {ELEMENT};
         Assert.assertTrue(BinarySearch.search(ELEMENT,sequence).isFound());
+    }
+
+    @Test
+    public void elementNotInSingleSeq(){
+        int[] sequence = {ELEMENT+1};
+
+        Assert.assertFalse(BinarySearch.search(ELEMENT, sequence).isFound());
     }
 }
